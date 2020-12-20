@@ -1,4 +1,4 @@
-const PROTO_PATH = "./customers.proto";
+var PROTO_PATH = "./customers.proto";
 
 var grpc = require("grpc");
 var protoLoader = require("@grpc/proto-loader");
@@ -14,8 +14,8 @@ var customersProto = grpc.loadPackageDefinition(packageDefinition);
 
 const { v4: uuidv4 } = require("uuid");
 
-const server = new grpc.Server();
-const customers = [
+var server = new grpc.Server();
+var customers = [
 	{
 		id: "a68b823c-7ca6-44bc-b721-fb4d5312cafc",
 		name: "John Bolton",

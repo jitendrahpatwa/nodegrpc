@@ -3,6 +3,7 @@ const client = require("./client");
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors')
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 
 app.get("/", (req, res) => {
 	client.getAll(null, (err, data) => {
@@ -18,6 +20,15 @@ app.get("/", (req, res) => {
 			res.render("customers", {
 				results: data.customers
 			});
+		}
+	});
+});
+
+
+app.get("/all", (req, res) => {
+	client.getAll(null, (err, data) => {
+		if (!err) {
+			res.send(data.customers);
 		}
 	});
 });
